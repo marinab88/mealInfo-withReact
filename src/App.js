@@ -1,23 +1,39 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import axios from 'axios';
+import MealDisplay from './Components/MealDisplay';
+import Button from './Components/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
+  const [mealData, setMealData] = useState([]);
+
+  const GetMealData = (e) => {
+    e.preventDefault();
+
+    axios
+      .get('https://www.themealdb.com/api/json/v1/1/random.php')
+      .then((res) => {
+        setMealData(res.data.mealData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <div className="text-center pt-5">
+        <h1> Feeling hungry? </h1>
+        <h3>Get a random meal by clicking below</h3>
+      </div>
+
+      <div>
+        <Button onClick={GetMealData} />
+        <MealDisplay info={mealData} />
+
+      </div>
     </div>
   );
 }
