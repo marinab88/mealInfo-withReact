@@ -1,45 +1,50 @@
 import React from 'react';
 
-const MealDisplay = ({ info }) => {
+const MealsInfo = ({ info }) => {
   
   return (
-    <div className="row">
-      <div className="col-5">
-        { info.map((meal) => (
-          <>
-            <div>
-              <img src={meal.strMealThumb} alt="Meal Image" />
-              {meal.strCategory ? (<p><strong>Category:</strong> {meal.strCategory}</p>) : ('')}
-              {meal.strArea ? (<p><strong>Area:</strong> {meal.strArea}</p>) : ('')}
-              {meal.strTags ? (<p><strong>Tags:</strong> {meal.strTags.split(',').join(', ')}</p>) : ('')}
+    <>
+      {info.map((info) => (
+        <div>
+          <div className="row">
+            <div className="col-5">
+              <img src={info.strMealThumb} alt="Meal" style={{width: '100%'}}/>
+              {info.strCategory ? 
+                (<p><strong>Category:</strong> {info.strCategory}</p>) 
+                : ('')}
+              {info.strArea ? 
+                (<p><strong>Area:</strong> {info.strArea}</p>) 
+                : ('')}
+              {info.strTags ? 
+                (<p><strong>Tags:</strong> {info.strTags.split(',').join(', ')}</p>) 
+                : ('')}
+              
               <h5>Ingredients:</h5>
                 <ul>
-                  <li>
-                    {meal.strIngredient1} - {meal.strMeasure1}
-                  </li>
-                  <li>
-                    {meal.strIngredient2} - {meal.strMeasure2}
-                  </li>
-                  <li>
-                    {meal.strIngredient3} - {meal.strMeasure3}
-                  </li>
-                  <li>
-                    {meal.strIngredient4} - {meal.strMeasure4}
-                  </li>
-                  <li>
-                    {meal.strIngredient5} - {meal.strMeasure5}
-                  </li>
+                  <li>{info.strIngredient1} - {info.strMeasure1}</li>
+                  <li>{info.strIngredient2} - {info.strMeasure2}</li>
+                  <li>{info.strIngredient3} - {info.strMeasure3}</li>
+                  <li>{info.strIngredient4} - {info.strMeasure4}</li>
+                  <li>{info.strIngredient5} - {info.strMeasure5}</li>
+                  <li>{info.strIngredient6} - {info.strMeasure6}</li>
+                  <li>{info.strIngredient7} - {info.strMeasure7}</li>
+                  <li>{info.strIngredient8} - {info.strMeasure8}</li>
+                  <li>{info.strIngredient9} - {info.strMeasure9}</li>
+                  <li>{info.strIngredient10} - {info.strMeasure10}</li>
+                  <li>{info.strIngredient11} - {info.strMeasure11}</li>
+                  <li>{info.strIngredient12} - {info.strMeasure12}</li>
                 </ul>
             </div>
             <div className="col-7">
-              <h4>{meal.strMeal}</h4>
-              <p>{meal.strInstructions}</p>
+              <h4>{info.strMeal}</h4>
+              <p>{info.strInstructions}</p>
             </div>
-          </>
-        ))}
-      </div>
-    </div>
+          </div>
+        </div>
+      ))}
+      
+    </>
   );
-};
+}
 
-export default MealDisplay;
+export default MealsInfo;

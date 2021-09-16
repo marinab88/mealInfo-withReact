@@ -1,26 +1,25 @@
 import React, { useState } from 'react';
-import './App.css';
 import axios from 'axios';
-import MealDisplay from './Components/MealDisplay';
+
+import MealsInfo from './Components/MealDisplay';
 import Button from './Components/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  const [mealData, setMealData] = useState([]);
+  const [meals, setMeals] = useState([]);
 
-  const GetMealData = (e) => {
+  const HandleClick = (e) => {
     e.preventDefault();
 
     axios
       .get('https://www.themealdb.com/api/json/v1/1/random.php')
       .then((res) => {
-        setMealData(res.data.mealData);
+        setMeals(res.data.meals);
       })
       .catch((err) => {
         console.log(err);
       });
   };
-
 
   return (
     <div className="container">
@@ -30,9 +29,8 @@ function App() {
       </div>
 
       <div>
-        <Button onClick={GetMealData} />
-        <MealDisplay info={mealData} />
-
+        <Button onClick={HandleClick} />
+        <MealsInfo info={meals} />
       </div>
     </div>
   );
